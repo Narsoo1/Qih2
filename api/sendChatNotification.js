@@ -1,8 +1,9 @@
-// api/sendChatNotification.js
 import admin from "../firebaseAdminConfig.js";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
+async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).send("Method Not Allowed");
+  }
 
   const { token, title, body, data } = req.body;
 
@@ -19,3 +20,5 @@ export default async function handler(req, res) {
     res.status(500).json({ success: false, error: error.message });
   }
 }
+
+export default handler;
